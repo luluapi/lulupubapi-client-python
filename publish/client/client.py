@@ -210,6 +210,12 @@ class Client:
         print simplejson.loads(response)
         return simplejson.loads(response)
 
+    def request_upload_token(self):
+        """
+        Request a token for use with file uploads.
+        """
+        return self.__submit("request_upload_token")
+
     def test_echo(self, parameters=None, form_data=None):
         """
         A simple echo method for unittest purposes.
@@ -225,7 +231,7 @@ class Client:
        as what would happen if input to a request was invalid.
        """
        return self.__submit("test_error1")
-
+  
     def __submit(self, method, options=None, form_data=None, download=None):
         """
         Carries out a request to the REST endpoint
