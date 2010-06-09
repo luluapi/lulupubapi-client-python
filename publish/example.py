@@ -16,7 +16,8 @@ def create_hardcover(self):
     # Alternatively, credentials can be passed into the login() function.
     pclient.login()
 
-    data = pclient.upload([cover, contents])
+    result = pclient.request_upload_token()
+    data = pclient.upload([cover, contents], result['token'])
 
     cover_fd = project.FileDetails({"mimetype": "application/pdf", "filename": os.path.basename(cover) })
     contents_fd = project.FileDetails({"mimetype": "application/pdf", "filename": os.path.basename(contents) })

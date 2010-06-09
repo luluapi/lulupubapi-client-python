@@ -173,7 +173,7 @@ class Client:
             print "downloaded %s as %s" % (what_file, save_as)
         return save_as
   
-    def upload(self, files):
+    def upload(self, files, upload_token):
         """
         Upload one or more files to the server.
         'files' is either a filename or an array of filenames.
@@ -196,6 +196,7 @@ class Client:
             input_hash[base] = open(f, "rb")
         input_hash["auth_token"] = self.token
         input_hash["auth_user"]  = self.user
+        input_hash["upload_token"]  = upload_token
         datagen, headers = poster_encode.multipart_encode(input_hash)
   
         # Create the Request object
