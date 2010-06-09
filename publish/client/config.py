@@ -73,6 +73,12 @@ class Config:
         """
         return self.parser.get("server", "publish_api_server", "127.0.0.1")
 
+    def get_upload_server(self):
+        """
+        Where is the PHP authentication endpoint?
+        """
+        return self.parser.get("server", "upload_server", "127.0.0.1")
+
     def get_user(self):
         """
         Is the user password saved?

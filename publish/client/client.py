@@ -201,7 +201,7 @@ class Client:
   
         # Create the Request object
   
-        request = urllib2.Request("https://%s/api/publish/v1/upload" % self.server, datagen, headers)
+        request = urllib2.Request("https://%s/api/publish/v1/upload" % self.config.get_upload_server(), datagen, headers)
   
         # Actually do the request, and get the response
         try:
