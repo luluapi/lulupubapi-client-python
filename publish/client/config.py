@@ -39,6 +39,7 @@ publish_api_server = 127.0.0.1
 [credentials]
 user = user@example.org
 key = password_here
+api_key = api_key_here
 """
 
 class Config:
@@ -96,5 +97,14 @@ class Config:
         key = self.parser.get("credentials", "key", None)
         if key == "password_here":
             raise Exception("Key needs to be changed in %s" % LOCAL_CONF)
+        return key
+
+    def get_api_key(self):
+        """
+        Is the api key saved?
+        """
+        key = self.parser.get("credentials", "api_key", None)
+        if key == "api_key_here":
+            raise Exception("API key needs to be changed in %s" % LOCAL_CONF)
         return key
 

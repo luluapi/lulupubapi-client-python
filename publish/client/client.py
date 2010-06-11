@@ -51,6 +51,7 @@ class Client:
 
         self.token    = None  # login will fill this in
         self.user     = None  # " "
+        self.api_key  = self.config.get_api_key()
         # FIXME: use Python standard logging
 
     def login(self, user=None, key=None):
@@ -258,6 +259,7 @@ class Client:
             form_data = {}
         form_data["auth_token"] = self.token
         form_data["auth_user"]  = self.user
+        form_data["api_key"]  = self.api_key
         form_data = urllib.urlencode(form_data)
   
         req = urllib2.Request(uri, form_data)
