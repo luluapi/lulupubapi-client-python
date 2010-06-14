@@ -245,7 +245,7 @@ class Client:
         assert self.token is not None, "call login(username, key) first to obtain a token"
         assert self.user is not None, "internal error, no user value"
         assert method is not None, "method is required"
-        uri = "https://%s/api/publish/v1/%s" % (self.server, method)
+        uri = "http://%s/api/publish/v1/%s" % (self.server, method)
   
         # add object-addressible parameters to the URL line
         # in the example of __submit("read", { "id": 3 }) the URL end in /id/3
