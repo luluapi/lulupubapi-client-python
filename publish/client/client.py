@@ -218,6 +218,13 @@ class Client:
         """
         return self.__submit("request_upload_token")
 
+    def get_base_cost(self, project, page_count=None):
+        """
+        Get base cost for the given project properties.
+        """
+        form_data = { 'project': project, 'page_count': page_count }
+        return self.__submit("base_cost", None, form_data)
+
     def test_echo(self, parameters=None, form_data=None):
         """
         A simple echo method for unittest purposes.
@@ -233,7 +240,7 @@ class Client:
        as what would happen if input to a request was invalid.
        """
        return self.__submit("test_error1")
-  
+
     def __submit(self, method, options=None, form_data=None, download=None):
         """
         Carries out a request to the REST endpoint
@@ -245,7 +252,7 @@ class Client:
         assert self.token is not None, "call login(username, key) first to obtain a token"
         assert self.user is not None, "internal error, no user value"
         assert method is not None, "method is required"
-        uri = "http://%s/api/publish/v1/%s" % (self.server, method)
+        uri = "https://%s/api/publish/v1/%s" % (self.server, method)
   
         # add object-addressible parameters to the URL line
         # in the example of __submit("read", { "id": 3 }) the URL end in /id/3

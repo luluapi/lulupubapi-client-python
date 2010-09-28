@@ -23,13 +23,18 @@ class Project(baseobj.BaseData):
 
    def get_map(self):
       PROJECT_TYPE_CHOICES = [ "hardcover", "softcover", "ebook" ]
-      ACCESS_TYPE_CHOICES = [ "private", "direct", "public" ]
+      """
+          Note: ACCESS_TYPE_CHOICES continues to include support for "direct".  This has been deprecated,
+          and is equivilant to setting access to "public" and distribution to [] (an empty array).
+      """
+      ACCESS_TYPE_CHOICES = [ "private", "public", "direct" ]
       return {
           'content_id'          : [ 0,                    "int",              0],
           'allow_ratings'       : [ True,                 "boolean",          0],
           'project_type'        : [ None,                 "choice",           PROJECT_TYPE_CHOICES],
           'program_code'        : [ "",                   "string",           0],
           'access'              : [ None,                 "choice",           ACCESS_TYPE_CHOICES],
+          'distribution'        : [ ["lulu_marketplace"], "list",             "string"],
           'bibliography'        : [ Bibliography(),       Bibliography,       0],
           'isbn'                : [ Isbn(),               Isbn,               0],
           'physical_attributes' : [ PhysicalAttributes(), PhysicalAttributes, 0],
